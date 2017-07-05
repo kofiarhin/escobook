@@ -2,5 +2,5 @@
 
 	include "header.php";
 
-	echo "check inbox here";
+	echo "<p class='error'>Check inbox here</p>";
  ?>

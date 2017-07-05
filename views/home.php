@@ -11,7 +11,7 @@
 
 		$user->load_user($id);
 
-		echo "Populate friends feeds here";
+		echo "<p class='error'>Populate friends feeds here</p>";
 
 	}
 

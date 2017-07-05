@@ -45,6 +45,9 @@
 			//var_dump($members);
 			//var_dump($friends);
 
+
+
+
 			foreach ($members as $member) {
 
 				if(!in_array($member, $friends)) {
@@ -64,8 +67,15 @@
 							echo "<a href='../controller/add_friend.inc.php?id=$p_id'>Add As friend</a>";
 					echo "</div>";
 					}
-				}
+				} 
 			}
+
+			if(count($members) == count($friends)) {
+
+				echo "<p class='error'>You Have Added All Users</p>";
+				echo "<a class='error_link' href='../views/friends.php'>Check out friends</a>";
+			}
+
 
 
 

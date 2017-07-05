@@ -2,6 +2,6 @@
 
 	include "header.php";
 
-	echo "compose message here";
+	echo "<p class='error'>compose message here</p>";
 
  ?>

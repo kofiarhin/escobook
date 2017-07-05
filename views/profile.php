@@ -19,12 +19,33 @@
 			echo "<a href='edit_profile?id=$id' class='edit_profile'>Edit Profile</a>";
 		echo "</div>";
 
-		echo "<form method='post' action='../controller/post.inc.php' class='form_post'>
-
-				<input type='text' name='post' placeholder='..what is on your mind'>
-				<button type='submit' name='postSubmit'>Post</button>
+		echo "<form method='post' action='../controller/tweet.inc.php' class='form_post'>
+				<input type='hidden' name='user_id' value='$id'>
+				<input type='text' name='tweet' placeholder='..what is on your mind'>
+				<button type='submit' name='tweetSubmit'>tweet</button>
 			</form>
 		";
+
+
+		$data = $user->get_all_tweets($id);
+
+		if(!$data) {
+
+			echo "<p class='error'>There are no tweets by user</p>";
+			die();
+		}
+
+		foreach($data as $key => $value) {
+
+			$tweet = $value['tweet'];
+			$tweet_id = $value['id'];
+			echo "<div class='tweet_unit'>";
+				echo "<p class='tweet'>{$tweet}</p>";
+
+				echo "<a href='../controller/delete_tweet.inc.php?id=$tweet_id'>Delete</a>";
+
+			echo "</div>";
+		}
 
 	}
 

@@ -101,6 +101,35 @@
 
 				return true;
 			}
+		}
+
+
+		public function send_tweet($tweet, $user_id) {
+
+			$result = $this->insert_tweet($tweet, $user_id);
+			return $result;
+
+		}
+
+		public function get_all_tweets($id) {
+
+			$result = $this->fetch_all_tweets($id);
+
+			if(!$result) {
+
+				return false;
+				die();
+			}
+
+			return $result;
+		}
+
+
+		public function delete_tweet($id) {
+
+			$result = $this->remove_tweet($id);
+
+			var_dump($result);
 		}	
 
 	}

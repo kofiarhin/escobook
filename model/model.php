@@ -176,5 +176,54 @@
 
 
 		}
+
+
+		public function insert_tweet($tweet, $user_id) {
+
+			//query database with tweet;
+			$sql = "INSERT INTO tweets(user_id, tweet) VALUES ('$user_id', '$tweet')";
+			$result = $this->connect()->query($sql);
+
+			if($result) {
+
+				return true;
+			} else {
+
+				return false;
+			}
+		}
+
+
+		protected function fetch_all_tweets($id) {
+
+				//get all tweets
+			$sql = "SELECT * FROM tweets WHERE user_id='$id'";
+			$result = $this->connect()->query($sql);
+			$check = $result->num_rows;
+
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+					$datas[] = $row;
+				}
+
+				return $datas;
+			}
+		}
+
+		protected function remove_tweet($id) {
+			//remove tweet
+
+			$sql = "DELETE FROM tweets WHERE id='$id'";
+			$result = $this->connect()->query($sql);
+
+			if($result) {
+
+				return true;
+			} else {
+
+				return false;
+			}
+		}
 	}
  ?>

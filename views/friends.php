@@ -10,6 +10,21 @@
 
 	$friends_id = $user->get_all_friends($id);
 
+	
+
+	if(!empty($friends_id)) {
+
+		$number = count($friends_id);
+
+		if($number > 1) {
+
+			echo "<p class='error'>You have ".$number." friends</p>";
+		}else {
+
+			echo "<p class='error'>You have ".$number." friend</p>";
+		}
+		
+	}
 
 	if(!$friends_id) {
 
@@ -21,6 +36,8 @@
 	foreach($friends_id as $friend) {
 
 		$show_user = $user->show_user($friend);
+
+
 
 		foreach ($show_user as $key => $value) {
 			
