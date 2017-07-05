@@ -4,39 +4,46 @@
 	include "header.php";
 	 $id = $_SESSION['id'];
 
+
+
 	$user = new User;
 
-	$friend_list = $user->load_friends($id);
+	$friends_id = $user->get_all_friends($id);
 
-	if(!$friend_list) {
 
-		echo "You have no friends";
+	if(!$friends_id) {
 
-		die();
+		echo "<p class='error'>You donnot have any friend</p>";
+		echo "<a class='error_link' href='../views/members.php'>Add Poeple You may Know</a>";
+		exit();
+	}
+
+	foreach($friends_id as $friend) {
+
+		$show_user = $user->show_user($friend);
+
+		foreach ($show_user as $key => $value) {
+			
+			$f_id = $value['id'];
+			$f_first = $value['first'];
+			$f_last = $value['last'];
+			$f_uid = $value['uid'];
+
+			echo "<div class='member'>";
+					echo "<img src='../img/default.jpg'>";
+					echo "<p>{$f_first} {$f_last}</p>";
+					echo "<a href='../controller/remove.inc.php?id=$f_id'>remove</a>";
+					echo "</div>";
+		}
 	}
 
 
-	foreach ($friend_list as $friend) {
 
-		$first = $friend['first'];
-		$last = $friend['last'];
-		$uid = $friend['uid'];
-		$id = $friend['friend_id'];
+	
+	
 
 
-		echo "<div class='friend'>";
-			echo "<img src='../img/default.jpg'>";
-			echo "<div class='details'>";
-			echo "<p> Name: ".$first." ".$last."</p>";
-			echo "<p> Handle: @".$uid."</p>";
 
-			echo"</div>";
-
-
-			echo "<a href='../controller/remove_friend.php?id=$id' class='remove'>Remove</a>";
-		echo "</div>";
-
-	}
 
 
 

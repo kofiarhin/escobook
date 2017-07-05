@@ -33,75 +33,75 @@
 		}
 
 
-		
 
+		public function add_friend($user_id, $friend_id) {
 
-		public function load_friends($id) {
+			$result = $this->set_friend($user_id, $friend_id);
 
-			//get all friends
-			$friends = $this->get_all_friends($id);
-
-			if($friends) {
- 
-				return $friends;
-			} else {
-
-				$this->errors = "You donot have any friends yet";
-			}
-
+			return $result;
 		}
 
 
-		
-		
+		//get all friends_id
 
-		public function get_friends_id($id) {
-			
-			$data = $this->fetch_friends_id($id);
 
-			if($data) {
+		public function get_all_members($id) {
 
-				return $data;
-			  } 
-			}
-		
-		
-		public function get_members_id($id) {
 
-			$data = $this->fetch_members_id($id);
-
-			return $data;
+			$result = $this->fetch_all_members($id);
+			return $result;
 		}
 
-		public function remove_friend($user_id, $friend_id) {
+		
+		//show user
 
+		public function show_user($id) {
 
-			$remove = $this->delete_friend($user_id, $friend_id);
+			$result = $this->fetch_user($id);
+			return $result;
+		}
 
-			if($remove) {
+		public function get_all_friends($id) {
 
-				return true;
-			} else {
+			$result = $this->fetch_all_friends($id);
 
+			if(!$result) {
 				return false;
+				die();
 			}
+
+			foreach ($result as $friend) {
+
+				if($friend != $id) {
+
+					$friends[] = $friend;
+				}
+
+
+			}
+
+			return $friends;
 		}
 
 
 		public function show_all_users($id) {
 
-			$data = $this->get_all_users($id);
-
-			return $data;
+			$result = $this->fetch_all_users($id);
+			return $result;
 		}
 
-		public function add_friend($user_id, $friend_id) {
 
-			$add = $this->set_friend($user_id, $friend_id);
+		public function  delete_user($user_id, $friend_id) {
 
-			return $add;
-		}
-		
+			$result = $this->remove_user($user_id, $friend_id);
+
+			if(!$result) {
+				return false;
+			} else {
+
+				return true;
+			}
+		}	
 
 	}
 

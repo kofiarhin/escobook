@@ -461,6 +461,7 @@ form .title {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
 form input {
@@ -482,6 +483,18 @@ form button {
 
 form span, form a {
   text-align: center;
+}
+
+.error {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.error_link {
+  color: red;
+  display: block;
+  text-align: center;
+  margin: 10px 0px;
 }
 
 header {
@@ -532,6 +545,14 @@ header .header_wrap a {
   letter-spacing: 2px;
 }
 
+.form_post input {
+  margin-bottom: 8px;
+}
+
+.form_post button {
+  width: 100px;
+}
+
 .friend {
   width: 540px;
   max-width: 95%;
@@ -554,4 +575,24 @@ header .header_wrap a {
   right: 20px;
   font-size: 12px;
   padding: 15px 10px;
+}
+
+.member {
+  margin: 10px auto 10px;
+  padding: 15px;
+  width: 540px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.member img {
+  width: 80px;
+  margin-right: 15px;
+}
+
+.member a {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

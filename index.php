@@ -15,9 +15,6 @@
 			<input type='text' name='uid' placeholder='Username'>
 			<input type='password' name='pwd' placeholder='Password'>
 			<button type='submit' name='loginSubmit'>Login</button>
-
-					
-
 		</form>
 </body>
 </html>

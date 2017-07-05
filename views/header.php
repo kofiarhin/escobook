@@ -22,8 +22,8 @@
 			<a href='profile.php'>Profile</a>
 			<a href='members.php'>Members</a>
 			<a href='friends.php'>Friends</a>
-			<a href=''>Inbox</a>
-			<a href=''>Compose</a>
+			<a href='inbox.php'>Inbox</a>
+			<a href='compose.php'>Compose</a>
 			<a href='../controller/logout.inc.php'>Logout</a>
 			</div>
 		</header>";

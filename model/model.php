@@ -56,57 +56,38 @@
 		}
 
 
+
+
+
+		public function set_friend($user_id, $friend_id) {
+
+			echo $user_id." ".$friend_id;
+			//insert into database values;
+			$sql = "INSERT INTO friends (user_id, friend_id) VALUES ('$user_id','$friend_id')";
+			$result = $this->connect()->query($sql);
+
+			if($result) {
+
+				$sql = "INSERT INTO friends (user_id, friend_id) VALUES ('$friend_id', '$user_id')";
+				$result = $this->connect()->query($sql);
+
+				return true;
+			}
+		}
+
 		
+		//get all members
+		protected function fetch_all_members($id) {
 
-		public function get_all_friends($id) {
-
-			//query database for friends
-			$sql = "select friends.friend_id, user.first, user.last, user.uid from friends join user on friends.friend_id = user.id where friends.user_id=$id";
-			$result = $this->connect()->query($sql);
-
-			$check = $result->num_rows;
-			if($check > 0) {
-
-				while($row = $result->fetch_assoc()) {
-
-					$data[] = $row;
-				}
-
-				return $data;
-			}
-		}
-
-
-		protected function fetch_friends_id($id) {
-
-			//query database for friends_id
-
-			$sql = "SELECT friend_id FROM friends WHERE user_id='$id'";
-			$result = $this->connect()->query($sql);
-			$check = $result->num_rows;
-
-			if($check > 0) {
-
-				while($row = $result->fetch_assoc()) {
-
-					$datas[] = $row['friend_id'];
-				}
-
-				return $datas;
-			}
-
-			
-		}
-
-		public function fetch_members_id($id) {
-
-			//query database for members
+			//query database for all users;
 			$sql = "SELECT id FROM user WHERE id<>$id";
 			$result = $this->connect()->query($sql);
 			$check = $result->num_rows;
+
 			if($check > 0) {
 
 				while($row = $result->fetch_assoc()) {
+
 					$datas[] = $row['id'];
 				}
 
@@ -114,28 +95,14 @@
 			}
 		}
 
-		protected function delete_friend($user_id, $friend_id) {
 
-			//delete from table;
+	
 
-			$sql = "DELETE FROM friends WHERE user_id='$user_id' AND friend_id='$friend_id'";
-			$result = $this->connect()->query($sql);
 
-			if($result) {
+		protected function fetch_user($id) {
 
-				return true;
-			} else {
-
-				return false;
-			}
-
-			
-		}
-
-		protected function get_all_users($id) {
-
-			//query database for users;
-			$sql = "SELECT id, first, last, uid FROM user";
+			//query database for user
+			$sql = "SELECT id, first, last, uid FROM user WHERE id='$id'";
 			$result = $this->connect()->query($sql);
 			$check = $result->num_rows;
 
@@ -150,20 +117,64 @@
 			}
 		}
 
-		protected function set_friend($user_id, $friend_id) {
 
-			//query database with values;
-			$sql = "INSERT INTO friends (user_id, friend_id) VALUES ('$user_id', '$friend_id')";
+		
+		protected function fetch_all_friends($id) {
+
+			//get all freinds
+
+			$sql = "SELECT friend_id FROM friends WHERE user_id='$id' OR friend_id='$id'";
 			$result = $this->connect()->query($sql);
 
+			$check = $result->num_rows;
+
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+
+					$datas[] = $row['friend_id'];
+				}
+
+				return $datas;
+			}
+		}
+
+
+		protected function fetch_all_users($id) {
+
+
+			$sql = "SELECT id, first, last, uid FROM user WHERE id<>$id";
+			$result = $this->connect()->query($sql);
+			$check = $result->num_rows;
+
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+
+
+					$datas[] = $row;
+				}
+
+				return $datas;
+			}
+		}
+
+
+		protected function remove_user($user_id, $friend_id) {
+
+			//delete from database
+
+			$sql = "DELETE FROM friends WHERE (user_id='$user_id' OR friend_id='$user_id') AND (user_id='$friend_id' OR friend_id='$friend_id')";
+			$result = $this->connect()->query($sql);
 			if(!$result) {
 
-				return false; 
+				return false;
 			} else {
 
 				return true;
 			}
+
+
 		}
-		
 	}
  ?>

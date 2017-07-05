@@ -19,6 +19,13 @@
 			echo "<a href='edit_profile?id=$id' class='edit_profile'>Edit Profile</a>";
 		echo "</div>";
 
+		echo "<form method='post' action='../controller/post.inc.php' class='form_post'>
+
+				<input type='text' name='post' placeholder='..what is on your mind'>
+				<button type='submit' name='postSubmit'>Post</button>
+			</form>
+		";
+
 	}
 
 
