@@ -446,6 +446,10 @@ html, body, input, button {
   font-family: 'Comfortaa', cursive;
 }
 
+body {
+  background: #e9e9e9;
+}
+
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
@@ -481,8 +485,21 @@ form button {
   letter-spacing: 2px;
 }
 
-form span, form a {
+form span {
+  display: block;
   text-align: center;
+  margin: 10px 0px;
+}
+
+form p {
+  text-align: center;
+  margin: 20px 0px;
+}
+
+form p .signup {
+  display: inline-block;
+  color: #60AFFE;
+  margin-left: 8px;
 }
 
 .error {
@@ -560,6 +577,23 @@ header .header_wrap a {
   margin: 10px auto 10px;
   padding: 20px 30px;
   position: relative;
+  background: white;
+  display: flex;
+  align-items: flex-start;
+}
+
+.tweet_unit .info {
+  margin-left: 20px;
+}
+
+.tweet_unit .info .uid {
+  margin-bottom: 5px;
+}
+
+.tweet_unit img {
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
 }
 
 .tweet_unit a {
@@ -592,6 +626,24 @@ header .header_wrap a {
   padding: 15px 10px;
 }
 
+.member.friend {
+  padding: 0px;
+  background: white;
+  border: 1px solid #e9e9e9;
+}
+
+.member.friend img {
+  width: 100px;
+}
+
+.member.friend a {
+  border: 1px solid #e9e9e9;
+  font-size: 12px;
+  padding: 10px 15px;
+  background: white;
+  color: black;
+}
+
 .member {
   margin: 10px auto 10px;
   padding: 15px;
@@ -599,6 +651,7 @@ header .header_wrap a {
   display: flex;
   align-items: center;
   position: relative;
+  background: white;
 }
 
 .member img {
@@ -610,4 +663,30 @@ header .header_wrap a {
   position: absolute;
   top: 20px;
   right: 20px;
+  font-size: 12px;
+  background: #60AFFE;
+  padding: 15px 10px;
+  color: white;
+}
+
+.home_tweet {
+  width: 540px;
+  max-width: 95%;
+  margin: 30px auto 10px;
+}
+
+.home_tweet img {
+  width: 40px;
+  margin-right: 15px;
+}
+
+.home_tweet .uid {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.home_tweet .tweet {
+  font-size: 18px;
 }

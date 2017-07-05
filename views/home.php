@@ -7,11 +7,13 @@
 
 		$id = $_SESSION['id'];
 
+
 		$user = new User;
 
 		$user->load_user($id);
 
-		echo "<p class='error'>Populate friends feeds here</p>";
+
+		$tweet = $user->load_all_tweets($id);
 
 	}
 

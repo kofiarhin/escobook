@@ -29,14 +29,14 @@
 
 				foreach ($users as $key => $value) {
 							$u_id = $value['id'];
-							$u_first = $value['first'];
-							$u_last = $value['last'];
+							$u_first = ucfirst($value['first']);
+							$u_last = ucfirst($value['last']);
 							$u_uid = $value['uid'];
 
 							echo "<div class='member'>";
 									echo "<img src='../img/default.jpg'>";
 									echo "<p>{$u_first} {$u_last}</p>";
-									echo "<a href='../controller/add_friend.inc.php?id=$u_id'>Add as Friend</a>";
+									echo "<a href='../controller/add_friend.inc.php?id=$u_id'>Add Friend</a>";
 									echo "</div>";
 				}
 				die();
@@ -58,8 +58,8 @@
 					foreach ($person as $key => $value) {
 						
 						$p_id = $value['id'];
-						$p_first = $value['first'];
-						$p_last = $value['last'];
+						$p_first = ucfirst($value['first']);
+						$p_last = ucfirst($value['last']);
 
 						echo "<div class='member'>";
 							echo "<img src='../img/default.jpg'>";

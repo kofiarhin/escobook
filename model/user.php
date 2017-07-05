@@ -17,6 +17,13 @@
 		}
 
 
+		public function signup($first, $last, $uid, $pwd) {
+
+			$result = $this->insert_user($first, $last, $uid, $pwd);
+
+			return $result;
+		}
+
 		public function update_user($id, $first, $last, $uid, $pwd) {
 
 				//update user and return results of current values
@@ -130,6 +137,93 @@
 			$result = $this->remove_tweet($id);
 
 			var_dump($result);
+		}
+
+		public function load_all_tweets($id) {
+
+			$tweets_id = $this->get_tweets_user_id();
+
+			if(!$tweets_id) {
+
+				echo "There are no tweets";
+				die();
+			}
+
+
+			$friends = $this->get_all_friends($id);
+
+			if(!$friends) {
+
+				
+			//show user tweets
+			$user_tweets = $this->get_user_tweet($id);
+
+			if(!$user_tweets) {
+
+				"There are no tweets from user";
+			} else {
+
+				foreach($user_tweets as $user_tweet) {
+					$uid = $user_tweet['uid'];
+					$tweet = $user_tweet['tweet'];
+					echo "<div class='home_tweet'>";
+							echo "<img src='../img/default.jpg'>";
+							echo "<p class='uid'> {$uid}</p>";
+							echo "<p class='tweet'> {$tweet}</p>";
+						echo "</div>";
+				} 
+			}
+				die();
+			} else {
+
+				foreach($friends as $friend) {
+				
+				if(in_array($friend, $tweets_id)) {
+
+					$friends_tweet = $this->load_user_tweet($friend);
+
+					
+
+					foreach($friends_tweet as $friend_tweet){
+
+						$uid = $friend_tweet['uid'];
+						$tweet = $friend_tweet['tweet'];
+
+						echo "<div class='home_tweet'>";
+							echo "<img src='../img/default.jpg'>";
+							echo "<p class='uid'> {$uid}</p>";
+							echo "<p class='tweet'> {$tweet}</p>";
+						echo "</div>";
+					}
+				}
+			}
+
+
+			}
+
+
+			//show user tweets
+			$user_tweets = $this->get_user_tweet($id);
+
+			if(!$user_tweets) {
+
+				"There are no tweets from user";
+			} else {
+
+				foreach($user_tweets as $user_tweet) {
+					$uid = $user_tweet['uid'];
+					$tweet = $user_tweet['tweet'];
+					echo "<div class='home_tweet'>";
+							echo "<img src='../img/default.jpg'>";
+							echo "<p class='uid'> {$uid}</p>";
+							echo "<p class='tweet'> {$tweet}</p>";
+						echo "</div>";
+				} 
+			}
+
+			
+
+
 		}	
 
 	}

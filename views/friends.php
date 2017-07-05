@@ -42,11 +42,11 @@
 		foreach ($show_user as $key => $value) {
 			
 			$f_id = $value['id'];
-			$f_first = $value['first'];
-			$f_last = $value['last'];
+			$f_first = ucfirst($value['first']);
+			$f_last = ucfirst($value['last']);
 			$f_uid = $value['uid'];
 
-			echo "<div class='member'>";
+			echo "<div class='member friend'>";
 					echo "<img src='../img/default.jpg'>";
 					echo "<p>{$f_first} {$f_last}</p>";
 					echo "<a href='../controller/remove.inc.php?id=$f_id'>remove</a>";

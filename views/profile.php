@@ -40,7 +40,12 @@
 			$tweet = $value['tweet'];
 			$tweet_id = $value['id'];
 			echo "<div class='tweet_unit'>";
-				echo "<p class='tweet'>{$tweet}</p>";
+
+				echo "<img src='../img/default.jpg'>";
+				echo "<div class='info'>";
+					echo "<p class='uid'>".$user->uid."</p>";
+					echo "<p class='tweet'>{$tweet}</p>";
+				echo "</div>";
 
 				echo "<a href='../controller/delete_tweet.inc.php?id=$tweet_id'>Delete</a>";
 

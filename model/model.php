@@ -26,6 +26,22 @@
 		}
 
 
+		protected function insert_user($first, $last, $uid, $pwd) {
+
+			//insert user into database
+
+			$sql = "INSERT INTO user (first, last, uid, pwd) VALUES ('$first', '$last', '$uid', '$pwd')";
+			$result = $this->connect()->query($sql);
+
+			if($result) {
+				return true; 
+			} else {
+
+				return false;
+			}
+		}
+
+
 		public function get_user($id) {
 			
 			//query database for user_info
@@ -225,5 +241,60 @@
 				return false;
 			}
 		}
+
+
+		protected function get_tweets_user_id() {
+
+			$sql = "SELECT user_id FROM tweets";
+			$result = $this->connect()->query ($sql);
+			$check = $result->num_rows;
+
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+
+					$datas[] = $row['user_id'];
+				}
+
+				return $datas;
+			}
+		} 
+
+		protected function load_user_tweet($friend) {
+
+			//query database for tweets;
+
+			$sql = "SELECT tweets.tweet, user.uid FROM tweets JOIN user ON tweets.user_id = user.id WHERE user_id='$friend'";
+			$result = $this->connect()->query($sql);
+			$check = $result->num_rows;
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+
+					$datas[] = $row;
+				}
+
+				return $datas;
+			}
+		}
+
+		protected function get_user_tweet($id) {
+
+			//query database for user tweet;
+
+			$sql = $sql = "SELECT tweets.tweet, user.uid FROM tweets JOIN user ON tweets.user_id = user.id WHERE user_id='$id'";
+			$result = $this->connect()->query($sql);
+			$check = $result->num_rows;
+			if($check > 0) {
+
+				while($row = $result->fetch_assoc()) {
+
+					$datas[] = $row;
+				}
+
+				return $datas;
+			}
+		}
+  
 	}
  ?>
